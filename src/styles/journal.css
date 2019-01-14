@@ -5,3 +5,12 @@ height: 40px;
 
 h1 {color: blue;
 }
+
+.entry-info { 
+  resize: both;
+}
+
+input {
+resize: both;
+
+}
