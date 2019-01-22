@@ -23,6 +23,14 @@ const createJournalHTML = (entry) => `
          <p>${entry.text}</p>
          <p>mood: ${entry.mood}</p>
         `
+        fetch('http://localhost:3000/entries')
+        .then(entries => entries.json)  
+        .then(entries => { 
+            forEach(entry => {
+            const entryAsHtml = createJournalHTML(entry)
+            addToDom(entryAsHtml)
+        })
+
 
 const addToDom = (entryAsHtml) => {
 document.querySelector(".container").innerHTML += entryAsHtml
