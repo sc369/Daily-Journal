@@ -14,9 +14,6 @@ function makeJournalEntry(thisDate, thisTitle, thisTextEntry, thisMood, thisId) 
 makeJournalEntry("Jan 14", "ChickenMonkey", "Chicken Monkey was interesting", "happy", 1)
 makeJournalEntry("Jan 14", "Concatenating output", "This was an elegant way to do the exercise", "happy", 2)
 
-console.log(allJournalEntries[0])
-console.log(allJournalEntries[1])
-
 const createJournalHTML = (entry) => `
          <h3>${entry.title}</h3>
          <p>${entry.date}</p>
@@ -27,6 +24,17 @@ const createJournalHTML = (entry) => `
 const addToDom = (entryAsHtml) => {
 document.querySelector(".container").innerHTML += entryAsHtml
 }
+
+fetch('http://localhost:3000/entries')
+  .then(entries => entries.json())
+  .then(parsedEntries => {
+    parsedEntries.forEach(entry => {
+    const entryAsHtml = createJournalHTML(entry)
+    addToDom(entryAsHtml)
+})
+}) 
+
+  
 
 allJournalEntries.forEach(entry => {
     const entryAsHtml = createJournalHTML(entry)
