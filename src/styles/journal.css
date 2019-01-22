@@ -3,7 +3,12 @@ height: 40px;
 
 }
 
-h1 {color: blue;
+h3 {color: blue;
+}
+
+.container {
+
+  color: fuchsia;
 }
 
 .entry-info { 
