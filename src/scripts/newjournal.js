@@ -1,4 +1,4 @@
-const container = document.querySelector("#container")
+const container = document.querySelector(".container")
 let allEntries = []
 
 const createJournalHTML = (entry) => {
@@ -78,6 +78,11 @@ saveButton.addEventListener("click", (event) => {
 })
 const radioButtons = document.querySelector("#radio_buttons")
 radioButtons.addEventListener("click", (event) => {
+    console.log(container)
+    console.log(container.firstChild)
+    while (container.firstChild) {
+        container.removeChild(container.firstChild)
+    }
     console.log(container.innerHTML)
     const mood = event.target.value
     const filteredEntries = allEntries.filter((entry) => {
