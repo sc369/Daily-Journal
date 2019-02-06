@@ -15,7 +15,7 @@
         <fieldset>
             <label for="journalDate">Date of entry</label>
             <input class="entry-info" type="date" name="journalDate" id="journalDate">
-            <div class="entry-info"> Concepts Covered:</div>
+            <div class="entry-info" id = "entry_info"> Concepts Covered:</div>
             <input type="text" name="conceptsCovered" id="conceptsCovered">
             <p id = "Journal Entry">Journal Entry:</p>
             <textarea id="textarea" name="story" rows="5" cols="30">
@@ -23,16 +23,19 @@
             <p>
                 <label>How do you feel today?</label>
                 <select id="emotionList">
-                    <option value="1">happy</option>
-                    <option value="2">sad</option>
-                    <option value="3">angry</option>
-                    <option value="4">worried</option>
+                    <option value="happy">happy</option>
+                    <option value="sad">sad</option>
+                    <option value="angry">angry</option>
+                    <option value="worried">worried</option>
                 </select>
             </p>
 
         </fieldset>
     </form>
-    <article id = "container"></article>
+    <article id = "container">
+<button type="button">Save Entry</button>
+
+    </article>
     <script src="src/scripts/newjournal.js"></script>
 </body>
 

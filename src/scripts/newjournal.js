@@ -14,9 +14,6 @@ const createJournalHTML = (entry) => { `
   </section>
   `
 }
-
-
-
 const addToDom = (entryAsHtml) => {
     document.querySelector(".container").innerHTML += entryAsHtml
 }
@@ -25,10 +22,6 @@ const getEntries = () => {
     return fetch("http://127.0.0.1:8088/entries")
         .then(res => res.json())
 }
-
-
-
-
 const postEntry = (entryObject) => {
     return fetch("http://127.0.0.1:8088/entries", {
         method: "POST",
@@ -40,7 +33,18 @@ const postEntry = (entryObject) => {
         .then(res => res.json())
 }
 const container = document.querySelector("#container")
+const createObject = () => {
 
 
 
- 
+}
+
+const textarea = document.querySelector("#textarea")
+const conceptsCovered = document.querySelector("#conceptsCovered")
+console.log(conceptsCovered)
+
+container.addEventListener("click", (event) => {
+console.log(textarea.value)
+console.log(conceptsCovered.value)
+
+})
