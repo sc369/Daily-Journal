@@ -1,14 +1,30 @@
-#journalEntry {
-height: 40px;
+h1 {
+text-align: center
 
 }
 
-h3 {color: blue;
+.date {
+border-radius: 10px;
+
+}
+
+.journalEntry {
+
+border: 1px solid black;
+width: 32%;
+margin: 5px;
+text-align: center; 
+}
+
+h3 {color: darkblue;
 }
 
 .container {
-
-  color: fuchsia;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: darkgreen;
+  background-color: aquamarine
 }
 
 .entry-info { 

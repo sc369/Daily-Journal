@@ -7,37 +7,33 @@
     <title>Daily Journal</title>
     <link rel="stylesheet" href="/src/styles/journal.css">
 </head>
+
 <body>
-    <h1 class = "container"> Daily Journal</h1>
+    <h1> Daily Journal</h1>
+    <div class="container"></div>
     <form action="">
-<fieldset>
-<label for="journalDate">Date of entry</label>
-<input class = "entry-info" type="date" name="journalDate" id="journalDate">
-<div class = "entry-info"> Concepts Covered:</div>
-<input type="text" name="conceptsCovered" id="conceptsCovered">
-<label for="Journal Entry">Journal Entry</label>
-
-<textarea id="story" name="story"
-          rows="5" cols="33">
+        <fieldset>
+            <label for="journalDate">Date of entry</label>
+            <input class="entry-info" type="date" name="journalDate" id="journalDate">
+            <div class="entry-info"> Concepts Covered:</div>
+            <input type="text" name="conceptsCovered" id="conceptsCovered">
+            <p id = "Journal Entry">Journal Entry:</p>
+            <textarea id="textarea" name="story" rows="5" cols="30">
 </textarea>
+            <p>
+                <label>How do you feel today?</label>
+                <select id="emotionList">
+                    <option value="1">happy</option>
+                    <option value="2">sad</option>
+                    <option value="3">angry</option>
+                    <option value="4">worried</option>
+                </select>
+            </p>
 
-
-
-<p>
-   <label>How do you feel today?</label>
-   <select id = "emotionList">
-     <option value = "1">happy</option>
-     <option value = "2">sad</option>
-     <option value = "3">angry</option>
-     <option value = "4">worried</option>
-   </select>
-</p>
-
- </fieldset>
-
-
-
+        </fieldset>
     </form>
-    <script src="scripts/journal.js"></script>
+    <article id = "container"></article>
+    <script src="src/scripts/newjournal.js"></script>
 </body>
+
 </html>
