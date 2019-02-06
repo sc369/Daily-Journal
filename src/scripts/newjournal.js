@@ -1,4 +1,7 @@
-const createJournalHTML = (entry) => { `
+const container = document.querySelector("#container")
+
+const createJournalHTML = (entry) => {
+    return `
 <article class = "journalEntry">         
   <section class = "title">
   <h3>${entry.title}</h3>
@@ -14,37 +17,63 @@ const createJournalHTML = (entry) => { `
   </section>
   `
 }
-const addToDom = (entryAsHtml) => {
-    document.querySelector(".container").innerHTML += entryAsHtml
-}
 
 const getEntries = () => {
     return fetch("http://127.0.0.1:8088/entries")
         .then(res => res.json())
+        .then(parsedEntries => {
+parsedEntries.forEach(element => {
+  const html = createJournalHTML(element)
+  addToDOM(html)
+});
+
+createJournalHTML(parsedEntries)
+console.log(parsedEntries)
+        })
 }
+
+getEntries()
+
+const createObject = (text, title, emotion, objectDate) => {
+
+    return {
+        title: title,
+        date: objectDate,
+        mood: emotion,
+        text: text
+    }
+}
+
+const addToDOM = (entryAsHtml) => {
+    document.querySelector(".container").innerHTML += entryAsHtml
+}
+
+
 const postEntry = (entryObject) => {
     return fetch("http://127.0.0.1:8088/entries", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(orderObject)
+        body: JSON.stringify(entryObject)
     })
         .then(res => res.json())
 }
-const container = document.querySelector("#container")
-const createObject = () => {
-
-
-
-}
-
 const textarea = document.querySelector("#textarea")
 const conceptsCovered = document.querySelector("#conceptsCovered")
+const emotionList = document.querySelector("#emotionList")
+const inputDate = document.querySelector("#journalDate")
+const saveButton = document.querySelector("#save_button")
 console.log(conceptsCovered)
 
-container.addEventListener("click", (event) => {
-console.log(textarea.value)
-console.log(conceptsCovered.value)
-
+saveButton.addEventListener("click", (event) => {
+    const text = textarea.value
+    const title = conceptsCovered.value
+    const mood = emotionList.value
+    const objectDate = inputDate.value
+    const newObject = createObject(text, title, mood, objectDate)
+    console.log(newObject)
+    postEntry(newObject)
+    const newHTML = createJournalHTML(newObject)
+    addToDOM(newHTML)
 })
