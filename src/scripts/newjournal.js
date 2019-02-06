@@ -1,4 +1,5 @@
 const container = document.querySelector("#container")
+let allEntries = []
 
 const createJournalHTML = (entry) => {
     return `
@@ -22,13 +23,13 @@ const getEntries = () => {
     return fetch("http://127.0.0.1:8088/entries")
         .then(res => res.json())
         .then(parsedEntries => {
-parsedEntries.forEach(element => {
-  const html = createJournalHTML(element)
-  addToDOM(html)
-});
+            allEntries = parsedEntries
+            parsedEntries.forEach(element => {
+                const html = createJournalHTML(element)
+                addToDOM(html)
+            });
 
-createJournalHTML(parsedEntries)
-console.log(parsedEntries)
+            createJournalHTML(parsedEntries)
         })
 }
 
@@ -64,7 +65,6 @@ const conceptsCovered = document.querySelector("#conceptsCovered")
 const emotionList = document.querySelector("#emotionList")
 const inputDate = document.querySelector("#journalDate")
 const saveButton = document.querySelector("#save_button")
-console.log(conceptsCovered)
 
 saveButton.addEventListener("click", (event) => {
     const text = textarea.value
@@ -72,8 +72,21 @@ saveButton.addEventListener("click", (event) => {
     const mood = emotionList.value
     const objectDate = inputDate.value
     const newObject = createObject(text, title, mood, objectDate)
-    console.log(newObject)
     postEntry(newObject)
     const newHTML = createJournalHTML(newObject)
     addToDOM(newHTML)
+})
+const radioButtons = document.querySelector("#radio_buttons")
+radioButtons.addEventListener("click", (event) => {
+    console.log(container.innerHTML)
+    const mood = event.target.value
+    const filteredEntries = allEntries.filter((entry) => {
+        return entry.mood === mood
+    })
+    filteredEntries.forEach((entry) => {
+        const newHTML = createJournalHTML(entry)
+        addToDOM(newHTML)
+
+    })
+
 })
